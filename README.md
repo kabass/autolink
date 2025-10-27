@@ -135,21 +135,60 @@ src/app/
 
 ## Deployment
 
-### Vercel (Recommended)
+### 🚀 Déploiement Gratuit (Recommandé : Vercel)
 
-1. Push your code to GitHub
-2. Connect your repository to Vercel
-3. Deploy automatically
+#### Option 1 : Vercel (5 minutes) ⭐
 
-### Other Platforms
+1. **Préparer le code**
+   ```bash
+   npm run build
+   git push origin main
+   ```
 
-Build the project for production:
+2. **Connecter à Vercel**
+   - Allez sur [vercel.com](https://vercel.com)
+   - Connectez-vous avec GitHub
+   - Importez votre dépôt `autolink`
+   - Cliquez sur "Deploy"
+
+3. **C'est tout !** 
+   - Votre site sera en ligne en quelques minutes
+   - URL : `https://votre-projet.vercel.app`
+
+**Avantages Vercel :**
+- ✅ 100% gratuit
+- ✅ Optimisé pour Next.js
+- ✅ HTTPS automatique
+- ✅ CDN global
+- ✅ Déploiements automatiques
+
+#### Option 2 : Netlify
+
+1. Allez sur [netlify.com](https://www.netlify.com)
+2. Importez votre dépôt GitHub
+3. Build command: `npm run build`
+4. Publish directory: `.next`
+
+#### Option 3 : Railway
+
+1. Allez sur [railway.app](https://railway.app)
+2. Créez un nouveau projet
+3. Connectez votre dépôt GitHub
+4. Déploiement automatique
+
+### 📚 Documentation Complète
+
+- **Guide détaillé** : Voir [DEPLOYMENT.md](./DEPLOYMENT.md)
+- **Démarrage rapide** : Voir [DEPLOYMENT_QUICK_START.md](./DEPLOYMENT_QUICK_START.md)
+
+### Build local pour production
 
 ```bash
 npm run build
+npm start
 ```
 
-The built files will be in the `.next` directory.
+Les fichiers de build seront dans le dossier `.next`.
 
 ## Contributing
 

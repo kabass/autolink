@@ -489,7 +489,7 @@ export function Header() {
                       <User className="h-5 w-5 text-white" />
                     </div>
                     <div>
-                      <p className="font-medium text-sm">{user?.name}</p>
+                      <p className="font-medium text-sm">{user?.firstName} {user?.lastName}</p>
                       <p className="text-xs text-gray-500">{user?.role === 'seller' ? 'Vendeur' : user?.role === 'supervisor' ? 'Superviseur' : 'Acheteur'}</p>
                     </div>
                   </div>

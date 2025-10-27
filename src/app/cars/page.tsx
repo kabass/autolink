@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { CarCard } from "@/components/car/car-card"
 import { SearchFilters, SearchFilters as SearchFiltersType } from "@/components/search/search-filters"
@@ -129,7 +129,7 @@ const sampleCars = [
   }
 ]
 
-export default function CarsPage() {
+function CarsPageContent() {
   const [searchResults, setSearchResults] = useState(sampleCars)
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   const [showMap, setShowMap] = useState(false)
@@ -386,6 +386,16 @@ export default function CarsPage() {
         )}
       </div>
     </div>
+  )
+}
+
+export default function CarsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <p className="text-gray-600">Chargement...</p>
+    </div>}>
+      <CarsPageContent />
+    </Suspense>
   )
 }
 
