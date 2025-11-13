@@ -53,10 +53,10 @@ const config: Config = {
         },
         // Couleurs sénégalaises douces (vert, jaune, rouge)
         senegal: {
-          green: "#4A7C59",    // Vert sénégalais doux
+          green: "#ff8900",    // Orange remplaçant le vert
           yellow: "#D4AF37",   // Jaune sénégalais doux
           red: "#C5282F",      // Rouge sénégalais doux
-          lightGreen: "#6B9B7A", // Vert clair
+          lightGreen: "#ff8900", // Orange clair
           lightYellow: "#E6C547", // Jaune clair
           lightRed: "#D85A5F",   // Rouge clair
         },

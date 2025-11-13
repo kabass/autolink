@@ -137,7 +137,7 @@ export default function ProfilePage() {
                       {user.role === "supervisor" && "Superviseur"}
                     </Badge>
                     {user.isVerified && (
-                      <Badge className="text-xs bg-green-500">
+                      <Badge className="text-xs bg-[#ff8900]">
                         <Shield className="h-3 w-3 mr-1" />
                         Vérifié
                       </Badge>

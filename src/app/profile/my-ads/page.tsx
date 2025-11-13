@@ -150,7 +150,7 @@ export default function MyAdsPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-[#ff8900]">
                 {userAds.filter(ad => ad.status === "active").length}
               </div>
               <div className="text-sm text-gray-600">Actives</div>
@@ -166,7 +166,7 @@ export default function MyAdsPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-[#262626]">
                 {userAds.filter(ad => ad.status === "sold").length}
               </div>
               <div className="text-sm text-gray-600">Vendues</div>

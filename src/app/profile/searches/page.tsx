@@ -116,13 +116,13 @@ export default function SearchesPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">{activeSearches.length}</div>
+              <div className="text-2xl font-bold text-[#ff8900]">{activeSearches.length}</div>
               <div className="text-sm text-gray-600">Actives</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-[#262626]">
                 {searches.reduce((sum, search) => sum + search.resultsCount, 0)}
               </div>
               <div className="text-sm text-gray-600">Résultats trouvés</div>
@@ -134,18 +134,18 @@ export default function SearchesPage() {
         {activeSearches.length > 0 && (
           <div className="mb-8">
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <Search className="h-5 w-5 text-green-600" />
+              <Search className="h-5 w-5 text-[#ff8900]" />
               Recherches Actives ({activeSearches.length})
             </h2>
             <div className="grid gap-4">
               {activeSearches.map((search) => (
-                <Card key={search.id} className="border-green-200 bg-green-50">
+                <Card key={search.id} className="border-[#ffd9b3] bg-[#fff5e6]">
                   <CardContent className="p-4">
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-2">
                           <h3 className="font-semibold text-lg">{search.name}</h3>
-                          <Badge variant="default" className="text-xs bg-green-600">
+                          <Badge variant="default" className="text-xs bg-[#ff8900]">
                             Active
                           </Badge>
                         </div>

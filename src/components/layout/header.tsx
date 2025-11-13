@@ -229,8 +229,8 @@ export function Header() {
                       <div className="px-4 py-2 border-b border-gray-100">
                         <div className="flex items-center gap-2">
                           {user?.role === 'supervisor' && <Crown className="h-4 w-4 text-yellow-500" />}
-                          {user?.role === 'seller' && <Shield className="h-4 w-4 text-blue-500" />}
-                          {user?.role === 'buyer' && <User className="h-4 w-4 text-green-500" />}
+                          {user?.role === 'seller' && <Shield className="h-4 w-4 text-[#262626]" />}
+                          {user?.role === 'buyer' && <User className="h-4 w-4 text-[#ff8900]" />}
                           <span className="text-sm font-medium text-gray-700">
                             {user?.role === 'buyer' && 'Profil Acheteur/Locataire'}
                             {user?.role === 'seller' && 'Profil Vendeur'}

@@ -74,6 +74,7 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
   const [mapCenter, setMapCenter] = useState<[number, number]>([14.5, -16.0])
   const [mapZoom, setMapZoom] = useState(7)
   const [icons, setIcons] = useState<{ [key: string]: any }>({})
+  const [leafletLoaded, setLeafletLoaded] = useState(false)
 
   // Coordonnées des principales villes du Sénégal
   const cityCoordinates: Record<string, [number, number]> = {
@@ -91,22 +92,41 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
 
   useEffect(() => {
     setIsClient(true)
+    // Initialiser Leaflet côté client
+    if (typeof window !== 'undefined') {
+      import('leaflet').then((L) => {
+        // S'assurer que Leaflet est disponible globalement pour react-leaflet
+        if (!(window as any).L) {
+          (window as any).L = L.default || L
+        }
+        setLeafletLoaded(true)
+      }).catch((error) => {
+        console.error('Failed to load Leaflet:', error)
+      })
+    }
   }, [])
 
   // Créer les icônes quand cityData change
   useEffect(() => {
     const createIcons = async () => {
+      if (typeof window === 'undefined') {
+        return
+      }
+      
       const newIcons: { [key: string]: any } = {}
       for (const city of cityData) {
-        newIcons[city.name] = await createCustomIcon(city)
+        const icon = await createCustomIcon(city)
+        if (icon) {
+          newIcons[city.name] = icon
+        }
       }
       setIcons(newIcons)
     }
     
-    if (cityData.length > 0) {
+    if (cityData.length > 0 && isClient && leafletLoaded) {
       createIcons()
     }
-  }, [cityData])
+  }, [cityData, isClient, leafletLoaded])
 
   // Zoom automatique sur la ville sélectionnée
   useEffect(() => {
@@ -208,12 +228,26 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
 
   // Créer une icône personnalisée avec le nombre de véhicules
   const createCustomIcon = async (city: CityData) => {
-    const L = await import('leaflet')
+    // Import dynamique de Leaflet pour éviter les erreurs SSR
+    if (typeof window === 'undefined' || !leafletLoaded) {
+      return null
+    }
+    
+    try {
+      const L = await import('leaflet')
+      // Leaflet peut être importé de différentes façons selon la version
+      const Leaflet = (L as any).default || L
+      
+      if (!Leaflet || typeof Leaflet.divIcon !== 'function') {
+        console.error('Leaflet divIcon is not available', Leaflet)
+        return null
+      }
+    
     const saleCount = city.vehicles.filter(v => !v.isRental).length
     const rentalCount = city.vehicles.filter(v => v.isRental).length
     
     if (city.vehicleCount === 0) {
-      return L.divIcon({
+      return Leaflet.divIcon({
         className: 'custom-div-icon',
         html: `
           <div style="
@@ -240,11 +274,11 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
 
     // Si on filtre par type spécifique
     if (filters?.type === "sale") {
-      return L.divIcon({
+      return Leaflet.divIcon({
         className: 'custom-div-icon',
         html: `
           <div style="
-            background-color: #4A7C59;
+            background-color: #ff8900;
             width: 24px;
             height: 24px;
             border-radius: 50%;
@@ -264,11 +298,11 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
         iconAnchor: [12, 12]
       })
     } else if (filters?.type === "rental") {
-      return L.divIcon({
+      return Leaflet.divIcon({
         className: 'custom-div-icon',
         html: `
           <div style="
-            background-color: #2563EB;
+            background-color: #262626;
             width: 24px;
             height: 24px;
             border-radius: 50%;
@@ -290,11 +324,11 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
     }
 
     // Vue mixte : afficher les deux nombres
-    return L.divIcon({
+    return Leaflet.divIcon({
       className: 'custom-div-icon',
       html: `
         <div style="
-          background-color: #4A7C59;
+          background-color: #ff8900;
           width: 32px;
           height: 32px;
           border-radius: 50%;
@@ -310,17 +344,21 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
           position: relative;
         ">
           <div style="display: flex; align-items: center; gap: 1px;">
-            <span style="color: #4A7C59; background: white; border-radius: 50%; width: 10px; height: 10px; display: flex; align-items: center; justify-content: center; font-size: 7px;">${saleCount}</span>
-            <span style="color: #2563EB; background: white; border-radius: 50%; width: 10px; height: 10px; display: flex; align-items: center; justify-content: center; font-size: 7px;">${rentalCount}</span>
+            <span style="color: #ff8900; background: white; border-radius: 50%; width: 10px; height: 10px; display: flex; align-items: center; justify-content: center; font-size: 7px;">${saleCount}</span>
+            <span style="color: #262626; background: white; border-radius: 50%; width: 10px; height: 10px; display: flex; align-items: center; justify-content: center; font-size: 7px;">${rentalCount}</span>
           </div>
         </div>
       `,
       iconSize: [32, 32],
       iconAnchor: [16, 16]
     })
+    } catch (error) {
+      console.error('Error creating custom icon:', error)
+      return null
+    }
   }
 
-  if (!isClient) {
+  if (!isClient || !leafletLoaded) {
     return (
       <Card>
         <CardHeader>
@@ -392,8 +430,14 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
             
-            {cityData.map((city) => (
-              <Marker key={city.name} position={city.coordinates} icon={icons[city.name]}>
+            {cityData.map((city) => {
+              const cityIcon = icons[city.name]
+              // Ne pas rendre le Marker si l'icône n'est pas disponible
+              if (!cityIcon) {
+                return null
+              }
+              return (
+              <Marker key={city.name} position={city.coordinates} icon={cityIcon}>
                 <Popup>
                   <div className="p-2 min-w-[200px]">
                     <div className="flex items-center gap-2 mb-2">
@@ -403,11 +447,11 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
                     
                     <div className="mb-3">
                       <div className="flex gap-2">
-                        <Badge variant="secondary" className="text-xs bg-green-100 text-green-800">
+                        <Badge variant="secondary" className="text-xs bg-[#ffe6cc] text-[#cc6d00]">
                           <Car className="h-3 w-3 mr-1" />
                           {city.vehicles.filter(v => !v.isRental).length} à vendre
                         </Badge>
-                        <Badge variant="secondary" className="text-xs bg-blue-100 text-blue-800">
+                        <Badge variant="secondary" className="text-xs bg-[#e8e8e8] text-[#1a1a1a]">
                           <Car className="h-3 w-3 mr-1" />
                           {city.vehicles.filter(v => v.isRental).length} à louer
                         </Badge>
@@ -453,7 +497,8 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
                   </div>
                 </Popup>
               </Marker>
-            ))}
+              )
+            })}
           </MapContainer>
         </div>
 
@@ -462,15 +507,15 @@ export function VehicleMap({ vehicles, filters, onCityClick, onFiltersChange }: 
           <h4 className="text-sm font-semibold mb-2">Légende</h4>
           <div className="flex flex-wrap gap-4 text-xs text-gray-600">
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-green-600 rounded-full"></div>
+              <div className="w-3 h-3 bg-[#ff8900] rounded-full"></div>
               <span>Véhicules à vendre</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
+              <div className="w-3 h-3 bg-[#262626] rounded-full"></div>
               <span>Véhicules à louer</span>
             </div>
             <div className="flex items-center gap-1">
-              <div className="w-4 h-4 bg-green-600 rounded-full flex items-center justify-center">
+              <div className="w-4 h-4 bg-[#ff8900] rounded-full flex items-center justify-center">
                 <div className="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <span>Mixte (vente + location)</span>

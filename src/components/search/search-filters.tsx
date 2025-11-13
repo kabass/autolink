@@ -317,8 +317,8 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
               onClick={() => handleFilterChange("type", "sale")}
               className={`px-3 py-2 text-xs ${
                 filters.type === "sale" 
-                  ? "bg-green-600 text-white hover:bg-green-700" 
-                  : "hover:bg-green-50 hover:text-green-700 hover:border-green-300"
+                  ? "bg-[#ff8900] text-white hover:bg-[#e67a00]" 
+                  : "hover:bg-[#fff5e6] hover:text-[#ff8900] hover:border-[#ffcc99]"
               }`}
             >
               <ShoppingCart className="h-3 w-3 mr-1" />
@@ -329,8 +329,8 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
               onClick={() => handleFilterChange("type", "rental")}
               className={`px-3 py-2 text-xs ${
                 filters.type === "rental" 
-                  ? "bg-blue-600 text-white hover:bg-blue-700" 
-                  : "hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300"
+                  ? "bg-[#262626] text-white hover:bg-[#1a1a1a]" 
+                  : "hover:bg-[#f5f5f5] hover:text-[#262626] hover:border-[#a0a0a0]"
               }`}
             >
               <Calendar className="h-3 w-3 mr-1" />
@@ -360,7 +360,7 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
                       key={index}
                       className={`px-2 py-1 cursor-pointer text-xs border-b border-gray-100 last:border-b-0 ${
                         index === selectedSuggestionIndex 
-                          ? 'bg-blue-100 text-blue-800' 
+                          ? 'bg-[#e8e8e8] text-[#1a1a1a]' 
                           : 'hover:bg-gray-100'
                       }`}
                       onMouseDown={(e) => {
@@ -395,7 +395,7 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
                       key={index}
                       className={`px-2 py-1 cursor-pointer text-xs border-b border-gray-100 last:border-b-0 ${
                         index === selectedSuggestionIndex 
-                          ? 'bg-blue-100 text-blue-800' 
+                          ? 'bg-[#e8e8e8] text-[#1a1a1a]' 
                           : 'hover:bg-gray-100'
                       }`}
                       onMouseDown={(e) => {
@@ -428,7 +428,7 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
                   <div
                     className={`px-2 py-1 cursor-pointer text-xs border-b border-gray-100 ${
                       -1 === selectedSuggestionIndex 
-                        ? 'bg-blue-100 text-blue-800' 
+                        ? 'bg-[#e8e8e8] text-[#1a1a1a]' 
                         : 'hover:bg-gray-100'
                     }`}
                     onMouseDown={(e) => {
@@ -443,7 +443,7 @@ export function SearchFilters({ onSearch, initialFilters, onAdvancedFiltersToggl
                       key={index}
                       className={`px-2 py-1 cursor-pointer text-xs border-b border-gray-100 last:border-b-0 ${
                         index === selectedSuggestionIndex 
-                          ? 'bg-blue-100 text-blue-800' 
+                          ? 'bg-[#e8e8e8] text-[#1a1a1a]' 
                           : 'hover:bg-gray-100'
                       }`}
                       onMouseDown={(e) => {

@@ -144,7 +144,7 @@ export default function SupervisorDashboard() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">{approvedCount}</div>
+              <div className="text-2xl font-bold text-[#ff8900]">{approvedCount}</div>
               <div className="text-sm text-gray-600">Approuvées</div>
             </CardContent>
           </Card>
@@ -160,7 +160,7 @@ export default function SupervisorDashboard() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <Card className="cursor-pointer hover:shadow-lg transition-shadow">
             <CardContent className="p-6 text-center">
-              <FileText className="h-12 w-12 text-blue-600 mx-auto mb-4" />
+              <FileText className="h-12 w-12 text-[#262626] mx-auto mb-4" />
               <h3 className="font-semibold mb-2">Valider les annonces</h3>
               <p className="text-sm text-gray-600 mb-4">
                 {pendingCount} annonces en attente de validation
@@ -173,7 +173,7 @@ export default function SupervisorDashboard() {
 
           <Card className="cursor-pointer hover:shadow-lg transition-shadow">
             <CardContent className="p-6 text-center">
-              <Users className="h-12 w-12 text-green-600 mx-auto mb-4" />
+              <Users className="h-12 w-12 text-[#ff8900] mx-auto mb-4" />
               <h3 className="font-semibold mb-2">Gérer les utilisateurs</h3>
               <p className="text-sm text-gray-600 mb-4">
                 Modérer les comptes utilisateurs
@@ -261,7 +261,7 @@ export default function SupervisorDashboard() {
                             </Badge>
                           )}
                           {ad.status === "approved" && (
-                            <Badge className="bg-green-600 text-white">
+                            <Badge className="bg-[#ff8900] text-white">
                               <CheckCircle className="h-3 w-3 mr-1" />
                               Approuvée
                             </Badge>
@@ -298,7 +298,7 @@ export default function SupervisorDashboard() {
                           <>
                             <Button 
                               size="sm" 
-                              className="bg-green-600 hover:bg-green-700"
+                              className="bg-[#ff8900] hover:bg-[#e67a00]"
                               onClick={() => handleApproveAd(ad.id)}
                             >
                               <CheckCircle className="h-4 w-4 mr-2" />

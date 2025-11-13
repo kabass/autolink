@@ -145,8 +145,8 @@ export default function MessagesPage() {
                       <div
                         key={message.id}
                         className={`p-4 border-b cursor-pointer hover:bg-gray-50 ${
-                          selectedMessage === message.id ? "bg-blue-50" : ""
-                        } ${!message.isRead ? "bg-blue-25" : ""}`}
+                          selectedMessage === message.id ? "bg-[#f5f5f5]" : ""
+                        } ${!message.isRead ? "bg-[#f9f9f9]" : ""}`}
                         onClick={() => setSelectedMessage(message.id)}
                       >
                         <div className="flex items-start gap-3">

@@ -89,11 +89,11 @@ export default function AppointmentsPage() {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "confirmed":
-        return <Badge className="bg-green-600 text-white">Confirmé</Badge>
+        return <Badge className="bg-[#ff8900] text-white">Confirmé</Badge>
       case "pending":
         return <Badge className="bg-yellow-600 text-white">En attente</Badge>
       case "completed":
-        return <Badge className="bg-blue-600 text-white">Terminé</Badge>
+        return <Badge className="bg-[#262626] text-white">Terminé</Badge>
       case "cancelled":
         return <Badge className="bg-red-600 text-white">Annulé</Badge>
       default:
@@ -150,7 +150,7 @@ export default function AppointmentsPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-[#ff8900]">
                 {appointmentsList.filter(a => a.status === "confirmed").length}
               </div>
               <div className="text-sm text-gray-600">Confirmés</div>
@@ -166,7 +166,7 @@ export default function AppointmentsPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-[#262626]">
                 {appointmentsList.filter(a => a.status === "completed").length}
               </div>
               <div className="text-sm text-gray-600">Terminés</div>
@@ -288,12 +288,12 @@ export default function AppointmentsPage() {
                           Appeler
                         </Button>
                         {appointment.status === "pending" && (
-                          <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                          <Button size="sm" className="bg-[#ff8900] hover:bg-[#e67a00]">
                             Confirmer
                           </Button>
                         )}
                         {appointment.status === "confirmed" && (
-                          <Button size="sm" className="bg-blue-600 hover:bg-blue-700">
+                          <Button size="sm" className="bg-[#262626] hover:bg-[#1a1a1a]">
                             Marquer terminé
                           </Button>
                         )}

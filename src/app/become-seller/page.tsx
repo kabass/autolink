@@ -235,7 +235,7 @@ export default function BecomeSellerPage() {
                       <div className="space-y-3">
                         {plan.features.map((feature, index) => (
                           <div key={index} className="flex items-center gap-2">
-                            <CheckCircle className="h-4 w-4 text-green-500" />
+                            <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                             <span className="text-sm">{feature}</span>
                           </div>
                         ))}

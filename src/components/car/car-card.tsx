@@ -69,8 +69,8 @@ export function CarCard({
           <div className="absolute top-1 sm:top-2 md:top-3 left-1 sm:left-2 md:left-3 flex gap-1 sm:gap-2">
             <Badge className={`text-white text-xs flex items-center gap-1 ${
               isRental 
-                ? "bg-blue-600 hover:bg-blue-700" 
-                : "bg-green-600 hover:bg-green-700"
+                ? "bg-[#262626] hover:bg-[#1a1a1a]" 
+                : "bg-[#ff8900] hover:bg-[#e67a00]"
             }`}>
               {isRental ? (
                 <>
@@ -180,8 +180,8 @@ export function CarCard({
                 size="sm" 
                 className={`flex-1 w-full cursor-pointer text-xs sm:text-sm ${
                   isRental 
-                    ? "bg-blue-600 hover:bg-blue-700 text-white" 
-                    : "bg-green-600 hover:bg-green-700 text-white"
+                    ? "bg-[#262626] hover:bg-[#1a1a1a] text-white" 
+                    : "bg-[#ff8900] hover:bg-[#e67a00] text-white"
                 }`}
               >
                 {isRental ? (

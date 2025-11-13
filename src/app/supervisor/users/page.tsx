@@ -150,9 +150,9 @@ export default function UsersManagementPage() {
       case "supervisor":
         return <Crown className="h-4 w-4 text-yellow-500" />
       case "seller":
-        return <Shield className="h-4 w-4 text-blue-500" />
+        return <Shield className="h-4 w-4 text-[#262626]" />
       case "buyer":
-        return <User className="h-4 w-4 text-green-500" />
+        return <User className="h-4 w-4 text-[#ff8900]" />
       default:
         return <User className="h-4 w-4" />
     }
@@ -208,13 +208,13 @@ export default function UsersManagementPage() {
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-green-600">{activeUsers}</div>
+              <div className="text-2xl font-bold text-[#ff8900]">{activeUsers}</div>
               <div className="text-sm text-gray-600">Actifs</div>
             </CardContent>
           </Card>
           <Card>
             <CardContent className="p-4 text-center">
-              <div className="text-2xl font-bold text-blue-600">{verifiedUsers}</div>
+              <div className="text-2xl font-bold text-[#262626]">{verifiedUsers}</div>
               <div className="text-sm text-gray-600">Vérifiés</div>
             </CardContent>
           </Card>
@@ -330,7 +330,7 @@ export default function UsersManagementPage() {
                       {/* Status Badges */}
                       <div className="flex flex-col gap-1">
                         {user.isVerified ? (
-                          <Badge className="bg-green-600 text-white text-xs">
+                          <Badge className="bg-[#ff8900] text-white text-xs">
                             <CheckCircle className="h-3 w-3 mr-1" />
                             Vérifié
                           </Badge>
@@ -342,7 +342,7 @@ export default function UsersManagementPage() {
                         )}
                         
                         {user.isActive ? (
-                          <Badge className="bg-blue-600 text-white text-xs">
+                          <Badge className="bg-[#262626] text-white text-xs">
                             Actif
                           </Badge>
                         ) : (
@@ -365,7 +365,7 @@ export default function UsersManagementPage() {
                           variant="outline" 
                           size="sm"
                           onClick={() => handleToggleUserStatus(user.id)}
-                          className={user.isActive ? "text-red-600" : "text-green-600"}
+                          className={user.isActive ? "text-red-600" : "text-[#ff8900]"}
                         >
                           {user.isActive ? (
                             <>

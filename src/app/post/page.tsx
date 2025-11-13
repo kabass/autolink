@@ -162,8 +162,8 @@ export default function PostPage() {
                     onClick={() => setAdType("sale")}
                     className={`flex-1 py-6 ${
                       adType === "sale" 
-                        ? "bg-green-600 hover:bg-green-700 text-white" 
-                        : "hover:bg-green-50 hover:text-green-700 hover:border-green-300"
+                        ? "bg-[#ff8900] hover:bg-[#e67a00] text-white" 
+                        : "hover:bg-[#fff5e6] hover:text-[#ff8900] hover:border-[#ffcc99]"
                     }`}
                   >
                     <ShoppingCart className="h-5 w-5 mr-2" />
@@ -177,8 +177,8 @@ export default function PostPage() {
                     onClick={() => setAdType("rental")}
                     className={`flex-1 py-6 ${
                       adType === "rental" 
-                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
-                        : "hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300"
+                        ? "bg-[#262626] hover:bg-[#1a1a1a] text-white" 
+                        : "hover:bg-[#f5f5f5] hover:text-[#262626] hover:border-[#a0a0a0]"
                     }`}
                   >
                     <Calendar className="h-5 w-5 mr-2" />

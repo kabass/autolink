@@ -292,8 +292,8 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                   <div className="absolute top-2 left-2 sm:top-4 sm:left-4 flex gap-1 sm:gap-2">
                     <Badge className={`text-white flex items-center gap-1 text-xs sm:text-sm ${
                       adaptedVehicleData.isRental 
-                        ? "bg-blue-600 hover:bg-blue-700" 
-                        : "bg-green-600 hover:bg-green-700"
+                        ? "bg-[#262626] hover:bg-[#1a1a1a]" 
+                        : "bg-[#ff8900] hover:bg-[#e67a00]"
                     }`}>
                       {adaptedVehicleData.isRental ? (
                         <>
@@ -393,7 +393,7 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                   {adaptedVehicleData.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-2">
-                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
+                      <CheckCircle className="h-3 w-3 sm:h-4 sm:w-4 text-[#ff8900]" />
                       <span className="text-xs sm:text-sm">{feature}</span>
                     </div>
                   ))}
@@ -409,7 +409,7 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
               <CardContent className="p-4 sm:p-6">
                 <div className="text-center mb-4 sm:mb-6">
                   <div className={`text-xl sm:text-2xl md:text-3xl font-bold mb-2 ${
-                    adaptedVehicleData.isRental ? 'text-blue-600' : 'text-green-600'
+                    adaptedVehicleData.isRental ? 'text-[#262626]' : 'text-[#ff8900]'
                   }`}>
                     {adaptedVehicleData.isRental 
                       ? `${formatPrice(adaptedVehicleData.rentalPricePerDay || 0)}/jour`
@@ -488,8 +488,8 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                 <div className="space-y-2 sm:space-y-3">
                   <Button className={`w-full ${
                     adaptedVehicleData.isRental 
-                      ? "bg-blue-600 hover:bg-blue-700 text-white" 
-                      : "bg-green-600 hover:bg-green-700 text-white"
+                      ? "bg-[#262626] hover:bg-[#1a1a1a] text-white" 
+                      : "bg-[#ff8900] hover:bg-[#e67a00] text-white"
                   }`}>
                     {adaptedVehicleData.isRental ? (
                       <>
@@ -505,16 +505,16 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                   </Button>
                   <Button variant="outline" className={`w-full ${
                     adaptedVehicleData.isRental 
-                      ? "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white" 
-                      : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                      ? "border-[#262626] text-[#262626] hover:bg-[#262626] hover:text-white" 
+                      : "border-[#ff8900] text-[#ff8900] hover:bg-[#ff8900] hover:text-white"
                   }`}>
                     <Phone className="h-4 w-4 mr-2" />
                     {adaptedVehicleData.isRental ? "Appeler le loueur" : "Appeler le vendeur"}
                   </Button>
                   <Button variant="outline" className={`w-full ${
                     adaptedVehicleData.isRental 
-                      ? "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white" 
-                      : "border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
+                      ? "border-[#262626] text-[#262626] hover:bg-[#262626] hover:text-white" 
+                      : "border-[#ff8900] text-[#ff8900] hover:bg-[#ff8900] hover:text-white"
                   }`}>
                     <MessageCircle className="h-4 w-4 mr-2" />
                     WhatsApp
@@ -532,7 +532,7 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
               <Card>
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
-                    <Calendar className="h-5 w-5 text-blue-600" />
+                    <Calendar className="h-5 w-5 text-[#262626]" />
                     Informations de Location
                   </CardTitle>
                 </CardHeader>
@@ -557,7 +557,7 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                     <div>
                       <h4 className="font-semibold mb-2">Lieu de Récupération</h4>
                       <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-blue-600" />
+                        <MapPin className="h-4 w-4 text-[#262626]" />
                         <span>{adaptedVehicleData.pickupLocation}</span>
                       </div>
                     </div>
@@ -568,19 +568,19 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                       <div className="space-y-2">
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600">Par jour</span>
-                          <span className="font-medium text-blue-600">
+                          <span className="font-medium text-[#262626]">
                             {formatPrice(adaptedVehicleData.rentalPricePerDay || 0)}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600">Par semaine</span>
-                          <span className="font-medium text-blue-600">
+                          <span className="font-medium text-[#262626]">
                             {formatPrice(adaptedVehicleData.rentalPricePerWeek || 0)}
                           </span>
                         </div>
                         <div className="flex items-center justify-between">
                           <span className="text-sm text-gray-600">Par mois</span>
-                          <span className="font-medium text-blue-600">
+                          <span className="font-medium text-[#262626]">
                             {formatPrice(adaptedVehicleData.rentalPricePerMonth || 0)}
                           </span>
                         </div>
@@ -637,7 +637,7 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
                     <span>Membre depuis {adaptedVehicleData.seller.memberSince}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                     <span>Vendeur vérifié</span>
                   </div>
                 </div>
@@ -655,19 +655,19 @@ export default function VehicleDetailsPage({ params }: { params: Promise<{ id: s
               <CardContent>
                 <div className="space-y-3 text-sm">
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                     <span>Vendeur vérifié</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                     <span>Véhicule inspecté</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                     <span>Garantie incluse</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <CheckCircle className="h-4 w-4 text-green-500" />
+                    <CheckCircle className="h-4 w-4 text-[#ff8900]" />
                     <span>Paiement sécurisé</span>
                   </div>
                 </div>

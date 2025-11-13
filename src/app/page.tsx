@@ -267,8 +267,8 @@ export default function Home() {
                     onClick={() => handleFormChange("type", "sale")}
                     className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base ${
                       searchForm.type === "sale" 
-                        ? "bg-green-600 text-white hover:bg-green-700" 
-                        : "hover:bg-green-50 hover:text-green-700 hover:border-green-300"
+                        ? "bg-[#ff8900] text-white hover:bg-[#e67a00]" 
+                        : "hover:bg-[#fff5e6] hover:text-[#ff8900] hover:border-[#ffcc99]"
                     }`}
                   >
                     <ShoppingCart className="h-4 w-4 mr-2" />
@@ -279,8 +279,8 @@ export default function Home() {
                     onClick={() => handleFormChange("type", "rental")}
                     className={`px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base ${
                       searchForm.type === "rental" 
-                        ? "bg-blue-600 text-white hover:bg-blue-700" 
-                        : "hover:bg-blue-50 hover:text-blue-700 hover:border-blue-300"
+                        ? "bg-[#262626] text-white hover:bg-[#1a1a1a]" 
+                        : "hover:bg-[#f5f5f5] hover:text-[#262626] hover:border-[#a0a0a0]"
                     }`}
                   >
                     <Calendar className="h-4 w-4 mr-2" />

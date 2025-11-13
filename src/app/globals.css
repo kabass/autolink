@@ -8,41 +8,41 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    --primary: 120 50% 45%;
+    --primary: 32 100% 50%;
     --primary-foreground: 0 0% 98%;
     --secondary: 45 60% 55%;
     --secondary-foreground: 0 0% 9%;
-    --muted: 120 20% 96%;
-    --muted-foreground: 120 20% 45%;
+    --muted: 32 20% 96%;
+    --muted-foreground: 32 20% 45%;
     --accent: 15 50% 50%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 120 20% 90%;
-    --input: 120 20% 90%;
-    --ring: 120 50% 45%;
+    --border: 32 20% 90%;
+    --input: 32 20% 90%;
+    --ring: 32 100% 50%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 120 15% 8%;
-    --foreground: 120 10% 90%;
-    --card: 120 15% 10%;
-    --card-foreground: 120 10% 90%;
-    --popover: 120 15% 10%;
-    --popover-foreground: 120 10% 90%;
+    --background: 32 15% 8%;
+    --foreground: 32 10% 90%;
+    --card: 32 15% 10%;
+    --card-foreground: 32 10% 90%;
+    --popover: 32 15% 10%;
+    --popover-foreground: 32 10% 90%;
     --primary: 45 60% 55%;
-    --primary-foreground: 120 15% 8%;
-    --secondary: 120 50% 45%;
-    --secondary-foreground: 120 10% 90%;
-    --muted: 120 15% 15%;
-    --muted-foreground: 120 10% 65%;
+    --primary-foreground: 32 15% 8%;
+    --secondary: 32 100% 50%;
+    --secondary-foreground: 32 10% 90%;
+    --muted: 32 15% 15%;
+    --muted-foreground: 32 10% 65%;
     --accent: 15 50% 50%;
-    --accent-foreground: 120 10% 90%;
+    --accent-foreground: 32 10% 90%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 120 10% 90%;
-    --border: 120 15% 20%;
-    --input: 120 15% 20%;
+    --destructive-foreground: 32 10% 90%;
+    --border: 32 15% 20%;
+    --input: 32 15% 20%;
     --ring: 45 60% 55%;
   }
 }
@@ -58,23 +58,23 @@
   
   /* Force l'application des couleurs sénégalaises douces */
   .bg-primary {
-    background-color: hsl(120, 50%, 45%) !important;
+    background-color: hsl(32, 100%, 50%) !important;
   }
   .text-primary {
-    color: hsl(120, 50%, 45%) !important;
+    color: hsl(32, 100%, 50%) !important;
   }
   .border-primary {
-    border-color: hsl(120, 50%, 45%) !important;
+    border-color: hsl(32, 100%, 50%) !important;
   }
 }
 
 /* Classes personnalisées pour les couleurs sénégalaises douces */
 @layer utilities {
   .bg-senegal-green {
-    background-color: #4A7C59 !important;
+    background-color: #ff8900 !important;
   }
   .text-senegal-green {
-    color: #4A7C59 !important;
+    color: #ff8900 !important;
   }
   .bg-senegal-yellow {
     background-color: #D4AF37 !important;
@@ -89,7 +89,7 @@
     color: #C5282F !important;
   }
   .border-senegal-green {
-    border-color: #4A7C59 !important;
+    border-color: #ff8900 !important;
   }
 }
 
@@ -210,6 +210,6 @@
 }
 
 [data-radix-select-item][data-highlighted] {
-  background-color: #3b82f6 !important;
+  background-color: #262626 !important;
   color: white !important;
 }
