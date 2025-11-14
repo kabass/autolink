@@ -1,0 +1,68 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: autolink-postgres
+    environment:
+      POSTGRES_DB: autolink
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-keycloak-db.sql:/docker-entrypoint-initdb.d/init-keycloak-db.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - autolink-network
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:23.0
+    container_name: autolink-keycloak
+    entrypoint: ["/opt/keycloak/scripts/start-with-idp.sh"]
+    env_file:
+      - keycloak.env
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: postgres
+      KC_HOSTNAME_STRICT: false
+      KC_HOSTNAME_STRICT_HTTPS: false
+      KC_HTTP_ENABLED: true
+      KC_HEALTH_ENABLED: true
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      FACEBOOK_CLIENT_ID: ${FACEBOOK_CLIENT_ID:-}
+      FACEBOOK_CLIENT_SECRET: ${FACEBOOK_CLIENT_SECRET:-}
+      SOCIAL_REDIRECT_URI: ${SOCIAL_REDIRECT_URI:-http://localhost:3000/auth/social/callback}
+      KEYCLOAK_WEB_ORIGIN: ${KEYCLOAK_WEB_ORIGIN:-http://localhost:3000}
+    ports:
+      - "9090:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./keycloak/autolink-realm.json:/opt/keycloak/data/import/autolink-realm.json:ro
+      - ./keycloak/scripts/start-with-idp.sh:/opt/keycloak/scripts/start-with-idp.sh:ro
+    networks:
+      - autolink-network
+    healthcheck:
+      test: ["CMD-SHELL", "sh -c '</dev/tcp/localhost/8080'"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 90s
+
+volumes:
+  postgres_data:
+
+networks:
+  autolink-network:
+    driver: bridge
+
